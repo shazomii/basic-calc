@@ -74,30 +74,24 @@ function add(a, b) {
 }
 
 function subtract(a, b) {
-    return a - b;
+    return parseFloat(a) - parseFloat(b);
 }
 
 function multiply(a, b) {
-    return a * b;
+    return parseFloat(a) * parseFloat(b);
 }
 
 function divide(a, b) {
-    return a / b;
+    if (parseFloat(b) === 0) {
+        return "Error";
+    }
+    return parseFloat(a) / parseFloat(b);
 }
 
 function operate(operand1, operand2, operator) {
-    switch (operator) {
-        case ADD:
-            return add(operand1, operand2);
-        case SUBTRACT:
-            return subtract(operand1, operand2);
-        case MULTIPLY:
-            return multiply(operand1, operand2);
-        case DIVIDE:
-            if (operand2 == 0) {
-                return 0;
-            } else {
-                return divide(operand1, operand2);
-            }
-    }
+    const result = (operator === ADD) ? add(operand1, operand2) :
+        (operator === SUBTRACT) ? subtract(operand1, operand2) :
+            (operator === MULTIPLY) ? multiply(operand1, operand2) :
+                divide(operand1, operand2);
+    return typeof result === "string" ? result : result;
 }
