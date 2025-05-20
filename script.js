@@ -17,7 +17,9 @@ let operator = "";
 
 digits.forEach(digit => {
     digit.addEventListener('click', () => {
-        if (operator == "") {
+        if (digit.textContent === "." && operator === "" && entry1.includes(".")) return;
+        if (digit.textContent === "." && operator !== "" && entry2.includes(".")) return;
+        if (operator === "") {
             entry1 += digit.textContent;
             display.textContent = entry1;
             entry2 = "";
