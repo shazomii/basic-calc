@@ -62,10 +62,10 @@ clear.addEventListener('click', () => {
 del.addEventListener('click', () => {
     if (entry1 !== "" && entry2 == "") {
         entry1 = entry1.slice(0, entry1.length - 1)
-        display.textContent = entry1;
+        display.textContent = entry1 || "0";
     } else {
         entry2 = entry2.slice(0, entry2.length - 1)
-        display.textContent = entry2;
+        display.textContent = entry2 || "0";
     }
 
 });
