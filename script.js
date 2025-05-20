@@ -95,5 +95,5 @@ function operate(operand1, operand2, operator) {
         (operator === SUBTRACT) ? subtract(operand1, operand2) :
             (operator === MULTIPLY) ? multiply(operand1, operand2) :
                 divide(operand1, operand2);
-    return typeof result === "string" ? result : result;
+    return typeof result === "string" ? result : Number.isInteger(result) ? result : result.toFixed(8);
 }
