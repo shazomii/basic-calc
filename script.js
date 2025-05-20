@@ -14,10 +14,17 @@ const del = document.querySelector('.delete');
 let entry1 = "";
 let entry2 = "";
 let operator = "";
+let isResultDisplayed = false;
 
 digits.forEach(digit => {
     digit.addEventListener('click', () => {
         const value = digit.textContent;
+        if (isResultDisplayed) {
+            entry1 = "";
+            entry2 = "";
+            operator = "";
+            isResultDisplayed = false;
+        }
         if (operator === "") {
             if (value === "." && (entry1 === "" || entry1 === "0")) {
                 entry1 = "0.";
@@ -49,23 +56,24 @@ digits.forEach(digit => {
 
 operatorBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-        if (entry2 != "") {
+        if (entry1 === "" || entry1 === "Error") return;
+        if (entry2 != "" && operator !== "") {
             display.textContent = operate(entry1, entry2, operator);
             entry1 = display.textContent;
             entry2 = "";
-            operator = btn.textContent;
-        } else {
-            operator = btn.textContent;
         }
+        operator = btn.textContent;
+        isResultDisplayed = false;
     });
 });
 
 equalsBtn.addEventListener('click', () => {
-    if (entry2 !== "") {
+    if (entry2 !== "" && operator !== "") {
         display.textContent = operate(entry1, entry2, operator);
         entry1 = display.textContent;
         entry2 = "";
         operator = "";
+        isResultDisplayed = true;
     }
 });
 
@@ -74,6 +82,7 @@ clear.addEventListener('click', () => {
     entry1 = "";
     entry2 = "";
     operator = "";
+    isResultDisplayed = false;
 });
 
 del.addEventListener('click', () => {
@@ -84,7 +93,7 @@ del.addEventListener('click', () => {
         entry2 = entry2.slice(0, entry2.length - 1)
         display.textContent = entry2 || "0";
     }
-
+    isResultDisplayed = false;
 });
 
 
