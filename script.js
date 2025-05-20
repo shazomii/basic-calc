@@ -1,3 +1,8 @@
+const ADD = "+";
+const SUBTRACT = "-";
+const MULTIPLY = "*";
+const DIVIDE = "/";
+
 function add(a, b) {
     return a + b;
 }
@@ -16,13 +21,13 @@ function divide(a, b) {
 
 function operate(operand1, operand2, operator) {
     switch (operator) {
-        case "+":
+        case ADD:
             return add(operand1, operand2);
-        case "-":
+        case SUBTRACT:
             return subtract(operand1, operand2);
-        case "*":
+        case MULTIPLY:
             return multiply(operand1, operand2);
-        case "/":
+        case DIVIDE:
             if (operand2 == 0) {
                 return 0;
             } else {
