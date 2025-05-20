@@ -19,16 +19,30 @@ digits.forEach(digit => {
     digit.addEventListener('click', () => {
         const value = digit.textContent;
         if (operator === "") {
-            if (value === "0" && (entry1 === "0" || entry1.startsWith("0") && !entry1.includes("."))) return;
-            if (value === "." && entry1.includes(".")) return;
-            entry1 += value;
-            display.textContent = entry1.replace(/^0+(?=\d)/, "");
+            if (value === "." && (entry1 === "" || entry1 === "0")) {
+                entry1 = "0.";
+                display.textContent = "0.";
+            } else if (value === "." && entry1.includes(".")) {
+                return;
+            } else if (value === "0" && (entry1 === "0" || entry1.startsWith("0") && !entry1.includes("."))) {
+                return;
+            } else {
+                entry1 += value;
+                display.textContent = entry1.replace(/^0+(?=\d)/, "");
+            }
             entry2 = "";
         } else {
-            if (value === "0" && (entry2 === "0" || entry2.startsWith("0") && !entry2.includes("."))) return;
-            if (value === "." && entry2.includes(".")) return;
-            entry2 += value;
-            display.textContent = entry2.replace(/^0+(?=\d)/, "");
+            if (value === "." && (entry2 === "" || entry2 === "0")) {
+                entry2 = "0.";
+                display.textContent = "0.";
+            } else if (value === "." && entry2.includes(".")) {
+                return;
+            } else if (value === "0" && (entry2 === "0" || entry2.startsWith("0") && !entry2.includes("."))) {
+                return;
+            } else {
+                entry2 += value;
+                display.textContent = entry2.replace(/^0+(?=\d)/, "");
+            }
         }
     });
 });
@@ -98,5 +112,7 @@ function operate(operand1, operand2, operator) {
         (operator === SUBTRACT) ? subtract(operand1, operand2) :
             (operator === MULTIPLY) ? multiply(operand1, operand2) :
                 divide(operand1, operand2);
-    return typeof result === "string" ? result : Number.isInteger(result) ? result : result.toFixed(8);
+    if (typeof result === "string") return result;
+    if (Number.isInteger(result)) return result;
+    return parseFloat(result.toFixed(8)).toString();
 }
