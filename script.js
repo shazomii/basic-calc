@@ -17,17 +17,20 @@ let operator = "";
 
 digits.forEach(digit => {
     digit.addEventListener('click', () => {
-        if (digit.textContent === "." && operator === "" && entry1.includes(".")) return;
-        if (digit.textContent === "." && operator !== "" && entry2.includes(".")) return;
+        const value = digit.textContent;
         if (operator === "") {
-            entry1 += digit.textContent;
-            display.textContent = entry1;
+            if (value === "0" && (entry1 === "0" || entry1.startsWith("0") && !entry1.includes("."))) return;
+            if (value === "." && entry1.includes(".")) return;
+            entry1 += value;
+            display.textContent = entry1.replace(/^0+(?=\d)/, "");
             entry2 = "";
-        } else if (operator !== "") {
-            entry2 += digit.textContent;
-            display.textContent = entry2;
+        } else {
+            if (value === "0" && (entry2 === "0" || entry2.startsWith("0") && !entry2.includes("."))) return;
+            if (value === "." && entry2.includes(".")) return;
+            entry2 += value;
+            display.textContent = entry2.replace(/^0+(?=\d)/, "");
         }
-    })
+    });
 });
 
 operatorBtns.forEach(btn => {
