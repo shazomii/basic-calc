@@ -96,6 +96,23 @@ del.addEventListener('click', () => {
     isResultDisplayed = false;
 });
 
+document.addEventListener('keydown', (event) => {
+    event.preventDefault();
+    const key = event.key;
+    if (/[0-9.]/.test(key)) {
+        const digitBtn = Array.from(digits).find(btn => btn.textContent === key);
+        if (digitBtn) digitBtn.click();
+    } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+        const operatorBtn = Array.from(operatorBtns).find(btn => btn.textContent === key);
+        if (operatorBtn) operatorBtn.click();
+    } else if (key === 'Enter' || key === '=') {
+        equalsBtn.click();
+    } else if (key === 'Escape' || key === 'c' || key === 'C') {
+        clear.click();
+    } else if (key === 'Backspace' || key === 'Delete') {
+        del.click();
+    }
+});
 
 function add(a, b) {
     return parseFloat(a) + parseFloat(b);
