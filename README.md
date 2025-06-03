@@ -11,10 +11,14 @@ You can view the live demo [here](https://shazomii.github.io/basic-calc/).
 
 ## Installation
 **1. Clone the repository:**
-`git clone https://github.com/shazomii/basic-calc.git`
+```bash
+git clone https://github.com/shazomii/basic-calc.git
+```
 
 **2. Navigate to the project directory:**
-`cd basic-calc`
+```bash
+cd basic-calc
+```
 
 **3. Open `index.html` in your preferred web browser.**
 No additional setup is required.
@@ -31,11 +35,17 @@ Contributions are welcome! Please follow these steps:
 
 1. Fork the repository.
 2. Create a new branch:
-`git checkout -b feature-branch`
+```bash
+git checkout -b feature-branch
+```
 3. Make your changes and commit:
-`git commit -m 'Add new shiny feature'`
+```bash
+git commit -m 'Add new shiny feature'
+```
 4. Push to the branch:
-`git push origin feature-branch`
+```bash
+git push origin feature-branch
+```
 5. Open a pull request.
 
 ## License
